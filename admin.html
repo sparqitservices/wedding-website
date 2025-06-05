@@ -3,503 +3,904 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Wedding RSVPs</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Wedding Admin Dashboard - Afzal & Samra</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            transition: all 0.3s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #8B4513, #B8860B);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2em;
+            color: #FFD700;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8em;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            color: #FFD700;
+            font-size: 0.9em;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: #8B4513;
+        }
+
+        .btn-primary:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #FFD700;
+        }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #8B4513;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
         .stat-card {
-            text-align: center;
-            padding: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            color: #FFD700;
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8em;
             font-weight: 700;
-            margin-bottom: 8px;
+            color: #FFD700;
+            margin-bottom: 5px;
         }
 
         .stat-label {
-            color: #6b7280;
+            color: #ccc;
+            font-size: 1.1em;
+        }
+
+        .stat-change {
+            font-size: 0.9em;
+            color: #90EE90;
+        }
+
+        /* Filters */
+        .filters {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            color: #FFD700;
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
-        .table-row {
-            transition: all 0.2s ease;
-        }
-
-        .table-row:hover {
-            background-color: #f9fafb;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .btn-export {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 8px 16px;
+        .filter-group select,
+        .filter-group input {
+            padding: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        /* RSVP Table */
+        .rsvp-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .rsvp-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rsvp-table th {
+            background: linear-gradient(135deg, #8B4513, #B8860B);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .rsvp-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            color: #ccc;
+        }
+
+        .rsvp-table tr:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .event-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .badge-barat-walima {
+            background: linear-gradient(45deg, #8B4513, #B8860B);
+            color: white;
+        }
+
+        .badge-walima {
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            color: white;
+        }
+
+        .guest-count {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.85em;
+            border-radius: 15px;
+        }
+
+        .btn-view {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #ffc107;
+            color: #8B4513;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Export Section */
+        .export-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .export-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, #8B4513, #B8860B);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-export:hover {
+        .export-btn:hover {
+            background: linear-gradient(45deg, #B8860B, #DAA520);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #FFD700;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .modal-title {
+            color: #FFD700;
+            font-size: 1.5em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+        }
+
+        .guest-details {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .guest-details strong {
+            color: #FFD700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .rsvp-table {
+                font-size: 0.9em;
+            }
+
+            .export-options {
+                justify-content: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #ccc;
+        }
+
+        .empty-state i {
+            font-size: 4em;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #FFD700;
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header -->
-        <div class="card p-6 mb-8 fade-in-up">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Wedding RSVP Dashboard</h1>
-                    <p class="text-gray-600">Real-time guest management for Afzal & [Bride Name]'s Wedding</p>
-                </div>
-                <div class="flex space-x-4">
-                    <button onclick="exportToCSV()" class="btn-export">
-                        📊 Export CSV
-                    </button>
-                    <button onclick="refreshData()" class="btn-export">
-                        🔄 Refresh
-                    </button>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <div class="logo-text">
+                    <h1>Wedding Admin</h1>
+                    <p>Afzal & Samra - June 2025</p>
                 </div>
             </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="refreshData()">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh
+                </button>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Back to Website
+                </a>
+            </div>
         </div>
+    </header>
 
+    <!-- Main Container -->
+    <div class="container">
         <!-- Stats Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-            <div class="card stat-card fade-in-up">
-                <div id="total-guests" class="stat-number text-purple-600">0</div>
-                <div class="stat-label">Total Guests</div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="stat-number" id="totalRSVPs">0</div>
+                <div class="stat-label">Total RSVPs</div>
+                <div class="stat-change">+0 this week</div>
             </div>
-            <div class="card stat-card fade-in-up">
-                <div id="barat-guests" class="stat-number text-blue-600">0</div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                </div>
+                <div class="stat-number" id="baratGuests">0</div>
                 <div class="stat-label">Barat Guests</div>
+                <div class="stat-change">Limit: 100</div>
             </div>
-            <div class="card stat-card fade-in-up">
-                <div id="walima-guests" class="stat-number text-green-600">0</div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <div class="stat-number" id="walimaGuests">0</div>
                 <div class="stat-label">Walima Guests</div>
+                <div class="stat-change">Target: 300+</div>
             </div>
-            <div class="card stat-card fade-in-up">
-                <div id="media-messages" class="stat-number text-orange-600">0</div>
-                <div class="stat-label">Media Messages</div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                </div>
+                <div class="stat-number" id="responseRate">0%</div>
+                <div class="stat-label">Response Rate</div>
+                <div class="stat-change">Last 7 days</div>
             </div>
         </div>
 
-        <!-- Language Distribution -->
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <div class="card p-6 text-center fade-in-up">
-                <h3 class="text-lg font-semibold mb-4">Language Distribution</h3>
-                <div class="space-y-2">
-                    <div class="flex justify-between">
-                        <span>English:</span>
-                        <span id="lang-en" class="font-semibold">0</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>हिंदी:</span>
-                        <span id="lang-hi" class="font-semibold">0</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>اردو:</span>
-                        <span id="lang-ur" class="font-semibold">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card p-6 text-center fade-in-up">
-                <h3 class="text-lg font-semibold mb-4">Event Capacity</h3>
-                <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between text-sm mb-1">
-                            <span>Barat</span>
-                            <span><span id="barat-count">0</span>/200</span>
-                        </div>
-                        <div class="bg-gray-200 rounded-full h-2">
-                            <div id="barat-progress" class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-sm mb-1">
-                            <span>Walima</span>
-                            <span><span id="walima-count">0</span>/250</span>
-                        </div>
-                        <div class="bg-gray-200 rounded-full h-2">
-                            <div id="walima-progress" class="bg-green-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card p-6 text-center fade-in-up">
-                <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
-                <div id="recent-activity" class="space-y-2 text-sm">
-                    <div class="text-gray-500">Loading...</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Guest List -->
-        <div class="card p-6 fade-in-up">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Guest List</h2>
-                <div class="flex space-x-4">
-                    <select id="filterEvent" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Event Type</label>
+                    <select id="eventFilter">
                         <option value="">All Events</option>
-                        <option value="barat">Barat Only</option>
-                        <option value="walima">Walima Only</option>
-                        <option value="both">Both Events</option>
+                        <option value="Barat + Walima">Barat + Walima</option>
+                        <option value="Walima Only">Walima Only</option>
                     </select>
-                    <select id="filterLanguage" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                        <option value="">All Languages</option>
-                        <option value="en">English</option>
-                        <option value="hi">Hindi</option>
-                        <option value="ur">Urdu</option>
+                </div>
+                <div class="filter-group">
+                    <label>Relation</label>
+                    <select id="relationFilter">
+                        <option value="">All Relations</option>
+                        <option value="family">Family</option>
+                        <option value="friend">Friend</option>
+                        <option value="colleague">Colleague</option>
+                        <option value="neighbor">Neighbor</option>
+                        <option value="other">Other</option>
                     </select>
+                </div>
+                <div class="filter-group">
+                    <label>Search Name</label>
+                    <input type="text" id="nameSearch" placeholder="Search by name...">
+                </div>
+                <div class="filter-group">
+                    <button class="btn btn-primary" onclick="applyFilters()">
+                        <i class="fas fa-filter"></i>
+                        Apply Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSVP Table -->
+        <div class="rsvp-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-list"></i>
+                    RSVP Responses
+                </h2>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="exportData('csv')">
+                        <i class="fas fa-download"></i>
+                        Export CSV
+                    </button>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full table-auto">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading RSVP data...</p>
+            </div>
+
+            <div class="table-container" id="tableContainer">
+                <table class="rsvp-table">
                     <thead>
-                        <tr class="bg-gray-50 border-b">
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Name</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Phone</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Events</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Language</th>
-                            <th class="px-4 py-3 text-center font-semibold text-gray-700">Media</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Submitted</th>
-                            <th class="px-4 py-3 text-center font-semibold text-gray-700">Actions</th>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Event Type</th>
+                            <th>Relation</th>
+                            <th>Guests</th>
+                            <th>Submitted</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="guest-list">
-                        <!-- Guest data will be populated here -->
+                    <tbody id="rsvpTableBody">
+                        <!-- Data will be populated by JavaScript -->
                     </tbody>
                 </table>
             </div>
 
-            <div id="no-guests" class="text-center py-8 text-gray-500 hidden">
-                No guests found matching the current filters.
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-inbox"></i>
+                <h3>No RSVPs Yet</h3>
+                <p>RSVPs will appear here once guests start responding to your invitations.</p>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+            <h3 style="color: #FFD700; margin-bottom: 20px;">
+                <i class="fas fa-file-export"></i>
+                Export Options
+            </h3>
+            <div class="export-options">
+                <button class="export-btn" onclick="exportData('csv')">
+                    <i class="fas fa-file-csv"></i>
+                    Export as CSV
+                </button>
+                <button class="export-btn" onclick="exportData('excel')">
+                    <i class="fas fa-file-excel"></i>
+                    Export as Excel
+                </button>
+                <button class="export-btn" onclick="exportData('pdf')">
+                    <i class="fas fa-file-pdf"></i>
+                    Export as PDF
+                </button>
+                <button class="export-btn" onclick="generateGuestList()">
+                    <i class="fas fa-print"></i>
+                    Print Guest List
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guest Details Modal -->
+    <div class="modal" id="guestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Guest Details</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="guest-details" id="guestDetails">
+                <!-- Guest details will be populated here -->
             </div>
         </div>
     </div>
 
     <script>
-        // Mock guest data (replace with Firebase data)
-        let allGuests = [
+        // Sample RSVP data (In production, this would come from your backend/database)
+        let rsvpData = [
             {
                 id: 1,
                 name: "Ahmed Khan",
+                email: "ahmed@example.com",
                 phone: "+91 9876543210",
-                events: ["barat", "walima"],
-                wishes: "May Allah bless your union with happiness and prosperity! Looking forward to celebrating with you both.",
-                mediaType: "audio",
-                timestamp: "2024-06-15T10:30:00Z",
-                language: "en"
+                eventType: "Barat + Walima",
+                relation: "family",
+                baratGuests: 4,
+                walimaGuests: 4,
+                dietary: "Vegetarian",
+                message: "Congratulations! Looking forward to the celebration.",
+                submissionTime: "2025-01-15T10:30:00Z"
             },
             {
                 id: 2,
                 name: "Fatima Sheikh",
+                email: "fatima@example.com",
                 phone: "+91 9876543211",
-                events: ["walima"],
-                wishes: "खुशियों से भरा हो आपका नया जीवन! आप दोनों को ढेर सारी शुभकामनाएं।",
-                mediaType: "video",
-                timestamp: "2024-06-15T11:15:00Z",
-                language: "hi"
+                eventType: "Walima Only",
+                relation: "friend",
+                baratGuests: 0,
+                walimaGuests: 2,
+                dietary: "",
+                message: "Best wishes for your new journey!",
+                submissionTime: "2025-01-16T14:20:00Z"
             },
             {
                 id: 3,
                 name: "Mohammad Ali",
+                email: "ali@example.com",
                 phone: "+91 9876543212",
-                events: ["barat"],
-                wishes: "اللہ آپ کو خوش رکھے اور آپ کی زندگی میں برکت دے۔",
-                mediaType: null,
-                timestamp: "2024-06-15T12:00:00Z",
-                language: "ur"
-            },
-            {
-                id: 4,
-                name: "Aisha Rahman",
-                phone: "+91 9876543213",
-                events: ["barat", "walima"],
-                wishes: "Congratulations on your special day! Wishing you both a lifetime of love and happiness.",
-                mediaType: "audio",
-                timestamp: "2024-06-15T14:20:00Z",
-                language: "en"
-            },
-            {
-                id: 5,
-                name: "Zara Siddiqui",
-                phone: "+91 9876543214",
-                events: ["walima"],
-                wishes: "आपकी शादी की बहुत बहुत बधाई! भगवान आप दोनों को हमेशा खुश रखे।",
-                mediaType: "video",
-                timestamp: "2024-06-15T16:45:00Z",
-                language: "hi"
+                eventType: "Barat + Walima",
+                relation: "colleague",
+                baratGuests: 2,
+                walimaGuests: 2,
+                dietary: "No beef",
+                message: "Congratulations to both families!",
+                submissionTime: "2025-01-17T09:15:00Z"
             }
         ];
 
-        let filteredGuests = [...allGuests];
-        let stats = {};
+        let filteredData = [...rsvpData];
 
         // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            loadGuestData();
-            setupFilters();
+        function initDashboard() {
             updateStats();
-            renderGuestList();
-            updateRecentActivity();
-        });
-
-        // Load guest data
-        function loadGuestData() {
-            // In real implementation, this would fetch from Firebase
-            filteredGuests = [...allGuests];
-        }
-
-        // Setup filters
-        function setupFilters() {
-            const eventFilter = document.getElementById('filterEvent');
-            const languageFilter = document.getElementById('filterLanguage');
-
-            eventFilter.addEventListener('change', applyFilters);
-            languageFilter.addEventListener('change', applyFilters);
-        }
-
-        // Apply filters
-        function applyFilters() {
-            const eventFilter = document.getElementById('filterEvent').value;
-            const languageFilter = document.getElementById('filterLanguage').value;
-
-            filteredGuests = allGuests.filter(guest => {
-                let eventMatch = true;
-                let languageMatch = true;
-
-                if (eventFilter) {
-                    if (eventFilter === 'both') {
-                        eventMatch = guest.events.includes('barat') && guest.events.includes('walima');
-                    } else {
-                        eventMatch = guest.events.includes(eventFilter);
-                    }
-                }
-
-                if (languageFilter) {
-                    languageMatch = guest.language === languageFilter;
-                }
-
-                return eventMatch && languageMatch;
-            });
-
-            renderGuestList();
+            renderTable();
+            setupEventListeners();
         }
 
         // Update statistics
         function updateStats() {
-            stats = {
-                total: allGuests.length,
-                barat: allGuests.filter(g => g.events.includes('barat')).length,
-                walima: allGuests.filter(g => g.events.includes('walima')).length,
-                media: allGuests.filter(g => g.mediaType).length,
-                byLanguage: {
-                    en: allGuests.filter(g => g.language === 'en').length,
-                    hi: allGuests.filter(g => g.language === 'hi').length,
-                    ur: allGuests.filter(g => g.language === 'ur').length
-                }
-            };
+            const totalRSVPs = rsvpData.length;
+            const baratGuests = rsvpData.reduce((sum, rsvp) => sum + (rsvp.baratGuests || 0), 0);
+            const walimaGuests = rsvpData.reduce((sum, rsvp) => sum + (rsvp.walimaGuests || 0), 0);
+            const responseRate = totalRSVPs > 0 ? Math.round((totalRSVPs / 50) * 100) : 0; // Assuming 50 invitations sent
 
-            // Update UI with animation
-            animateCounter('total-guests', stats.total);
-            animateCounter('barat-guests', stats.barat);
-            animateCounter('walima-guests', stats.walima);
-            animateCounter('media-messages', stats.media);
-
-            // Update language distribution
-            document.getElementById('lang-en').textContent = stats.byLanguage.en;
-            document.getElementById('lang-hi').textContent = stats.byLanguage.hi;
-            document.getElementById('lang-ur').textContent = stats.byLanguage.ur;
-
-            // Update progress bars
-            updateProgressBar('barat', stats.barat, 200);
-            updateProgressBar('walima', stats.walima, 250);
+            document.getElementById('totalRSVPs').textContent = totalRSVPs;
+            document.getElementById('baratGuests').textContent = baratGuests;
+            document.getElementById('walimaGuests').textContent = walimaGuests;
+            document.getElementById('responseRate').textContent = responseRate + '%';
         }
 
-        // Animate counter
-        function animateCounter(elementId, targetValue) {
-            const element = document.getElementById(elementId);
-            const currentValue = parseInt(element.textContent) || 0;
-            const increment = targetValue > currentValue ? 1 : -1;
-            const duration = 1000;
-            const steps = Math.abs(targetValue - currentValue);
+        // Render RSVP table
+        function renderTable() {
+            const tbody = document.getElementById('rsvpTableBody');
+            const emptyState = document.getElementById('emptyState');
+            const tableContainer = document.getElementById('tableContainer');
 
-            if (steps === 0) return;
-
-            const stepDuration = duration / steps;
-            let current = currentValue;
-
-            const timer = setInterval(() => {
-                current += increment;
-                element.textContent = current;
-
-                if (current === targetValue) {
-                    clearInterval(timer);
-                }
-            }, stepDuration);
-        }
-
-        // Update progress bar
-        function updateProgressBar(event, count, capacity) {
-            const percentage = (count / capacity) * 100;
-            document.getElementById(`${event}-count`).textContent = count;
-            document.getElementById(`${event}-progress`).style.width = `${percentage}%`;
-        }
-
-        // Render guest list
-        function renderGuestList() {
-            const tbody = document.getElementById('guest-list');
-            const noGuests = document.getElementById('no-guests');
-
-            tbody.innerHTML = '';
-
-            if (filteredGuests.length === 0) {
-                noGuests.classList.remove('hidden');
+            if (filteredData.length === 0) {
+                tableContainer.style.display = 'none';
+                emptyState.style.display = 'block';
                 return;
             }
 
-            noGuests.classList.add('hidden');
+            tableContainer.style.display = 'block';
+            emptyState.style.display = 'none';
 
-            filteredGuests.forEach((guest, index) => {
-                const row = document.createElement('tr');
-                row.className = 'table-row border-b';
-
-                const eventsText = guest.events.map(e => 
-                    e.charAt(0).toUpperCase() + e.slice(1)
-                ).join(', ');
-
-                const mediaIcon = guest.mediaType === 'audio' ? '🎤' : 
-                                 guest.mediaType === 'video' ? '📹' : '📝';
-
-                const languageFlag = guest.language === 'en' ? '🇺🇸' :
-                                   guest.language === 'hi' ? '🇮🇳' : '🇵🇰';
-
-                const timeAgo = getTimeAgo(new Date(guest.timestamp));
-
-                row.innerHTML = `
-                    <td class="px-4 py-3">
-                        <div class="font-medium text-gray-900">${guest.name}</div>
-                    </td>
-                    <td class="px-4 py-3 text-gray-700">${guest.phone}</td>
-                    <td class="px-4 py-3">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                            ${eventsText}
+            tbody.innerHTML = filteredData.map(rsvp => `
+                <tr>
+                    <td><strong style="color: #FFD700;">${rsvp.name}</strong></td>
+                    <td>${rsvp.email}</td>
+                    <td>${rsvp.phone}</td>
+                    <td>
+                        <span class="event-badge ${rsvp.eventType === 'Barat + Walima' ? 'badge-barat-walima' : 'badge-walima'}">
+                            ${rsvp.eventType}
                         </span>
                     </td>
-                    <td class="px-4 py-3">
-                        <span class="inline-flex items-center">
-                            ${languageFlag} ${guest.language.toUpperCase()}
-                        </span>
+                    <td style="text-transform: capitalize;">${rsvp.relation}</td>
+                    <td>
+                        ${rsvp.baratGuests > 0 ? `<span class="guest-count">B: ${rsvp.baratGuests}</span> ` : ''}
+                        ${rsvp.walimaGuests > 0 ? `<span class="guest-count">W: ${rsvp.walimaGuests}</span>` : ''}
                     </td>
-                    <td class="px-4 py-3 text-center">
-                        <span class="text-xl" title="${guest.mediaType || 'Text only'}">${mediaIcon}</span>
+                    <td>${new Date(rsvp.submissionTime).toLocaleDateString()}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-small btn-view" onclick="viewGuest(${rsvp.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-small btn-edit" onclick="editGuest(${rsvp.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-small btn-delete" onclick="deleteGuest(${rsvp.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </td>
-                    <td class="px-4 py-3 text-sm text-gray-500">${timeAgo}</td>
-                    <td class="px-4 py-3 text-center">
-                        <button onclick="viewGuest(${guest.id})" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                            View
-                        </button>
-                    </td>
-                `;
-
-                tbody.appendChild(row);
-
-                // Animate row appearance
-                setTimeout(() => {
-                    row.style.opacity = '0';
-                    row.style.transform = 'translateY(20px)';
-                    row.style.transition = 'all 0.3s ease-out';
-
-                    setTimeout(() => {
-                        row.style.opacity = '1';
-                        row.style.transform = 'translateY(0)';
-                    }, 50);
-                }, index * 50);
-            });
-        }
-
-        // Get time ago string
-        function getTimeAgo(date) {
-            const now = new Date();
-            const diffInSeconds = Math.floor((now - date) / 1000);
-
-            if (diffInSeconds < 60) return 'Just now';
-            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
-            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
-            return `${Math.floor(diffInSeconds / 86400)}d ago`;
-        }
-
-        // Update recent activity
-        function updateRecentActivity() {
-            const recentActivity = document.getElementById('recent-activity');
-            const recent = allGuests
-                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-                .slice(0, 3);
-
-            recentActivity.innerHTML = recent.map(guest => `
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-700">${guest.name}</span>
-                    <span class="text-xs text-gray-500">${getTimeAgo(new Date(guest.timestamp))}</span>
-                </div>
+                </tr>
             `).join('');
         }
 
+        // Apply filters
+        function applyFilters() {
+            const eventFilter = document.getElementById('eventFilter').value;
+            const relationFilter = document.getElementById('relationFilter').value;
+            const nameSearch = document.getElementById('nameSearch').value.toLowerCase();
+
+            filteredData = rsvpData.filter(rsvp => {
+                const matchesEvent = !eventFilter || rsvp.eventType === eventFilter;
+                const matchesRelation = !relationFilter || rsvp.relation === relationFilter;
+                const matchesName = !nameSearch || rsvp.name.toLowerCase().includes(nameSearch);
+
+                return matchesEvent && matchesRelation && matchesName;
+            });
+
+            renderTable();
+        }
+
         // View guest details
-        function viewGuest(guestId) {
-            const guest = allGuests.find(g => g.id === guestId);
-            if (guest) {
-                alert(`Guest Details:\n\nName: ${guest.name}\nPhone: ${guest.phone}\nEvents: ${guest.events.join(', ')}\nLanguage: ${guest.language}\nWishes: ${guest.wishes}\nMedia: ${guest.mediaType || 'None'}\nSubmitted: ${new Date(guest.timestamp).toLocaleString()}`);
+        function viewGuest(id) {
+            const guest = rsvpData.find(rsvp => rsvp.id === id);
+            if (!guest) return;
+
+            const detailsHtml = `
+                <div style="line-height: 2;">
+                    <p><strong>Name:</strong> ${guest.name}</p>
+                    <p><strong>Email:</strong> ${guest.email}</p>
+                    <p><strong>Phone:</strong> ${guest.phone}</p>
+                    <p><strong>Event Type:</strong> ${guest.eventType}</p>
+                    <p><strong>Relation:</strong> ${guest.relation}</p>
+                    <p><strong>Barat Guests:</strong> ${guest.baratGuests || 0}</p>
+                    <p><strong>Walima Guests:</strong> ${guest.walimaGuests || 0}</p>
+                    <p><strong>Dietary Restrictions:</strong> ${guest.dietary || 'None'}</p>
+                    <p><strong>Message:</strong> ${guest.message || 'No message'}</p>
+                    <p><strong>Submitted:</strong> ${new Date(guest.submissionTime).toLocaleString()}</p>
+                </div>
+            `;
+
+            document.getElementById('guestDetails').innerHTML = detailsHtml;
+            document.getElementById('guestModal').style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('guestModal').style.display = 'none';
+        }
+
+        // Edit guest (placeholder)
+        function editGuest(id) {
+            alert('Edit functionality would be implemented here');
+        }
+
+        // Delete guest
+        function deleteGuest(id) {
+            if (confirm('Are you sure you want to delete this RSVP?')) {
+                rsvpData = rsvpData.filter(rsvp => rsvp.id !== id);
+                applyFilters();
+                updateStats();
             }
         }
 
-        // Export to CSV
-        function exportToCSV() {
-            const headers = ['Name', 'Phone', 'Events', 'Wishes', 'Media Type', 'Language', 'Timestamp'];
+        // Export data
+        function exportData(format) {
+            const data = filteredData.map(rsvp => ({
+                Name: rsvp.name,
+                Email: rsvp.email,
+                Phone: rsvp.phone,
+                'Event Type': rsvp.eventType,
+                Relation: rsvp.relation,
+                'Barat Guests': rsvp.baratGuests || 0,
+                'Walima Guests': rsvp.walimaGuests || 0,
+                'Dietary Restrictions': rsvp.dietary || '',
+                Message: rsvp.message || '',
+                'Submission Date': new Date(rsvp.submissionTime).toLocaleDateString()
+            }));
+
+            if (format === 'csv') {
+                downloadCSV(data);
+            } else {
+                alert(`${format.toUpperCase()} export functionality would be implemented here`);
+            }
+        }
+
+        // Download CSV
+        function downloadCSV(data) {
+            const headers = Object.keys(data[0]);
             const csvContent = [
                 headers.join(','),
-                ...allGuests.map(guest => [
-                    `"${guest.name}"`,
-                    `"${guest.phone}"`,
-                    `"${guest.events.join(', ')}"`,
-                    `"${guest.wishes.replace(/"/g, '""')}"`,
-                    `"${guest.mediaType || 'None'}"`,
-                    `"${guest.language}"`,
-                    `"${guest.timestamp}"`
-                ].join(','))
+                ...data.map(row => headers.map(header => `"${row[header]}"`).join(','))
             ].join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -511,25 +912,99 @@
             window.URL.revokeObjectURL(url);
         }
 
-        // Refresh data
-        function refreshData() {
-            // In real implementation, this would fetch fresh data from Firebase
-            loadGuestData();
-            updateStats();
-            renderGuestList();
-            updateRecentActivity();
+        // Generate guest list
+        function generateGuestList() {
+            const printWindow = window.open('', '_blank');
+            const guestListHtml = `
+                <html>
+                <head>
+                    <title>Wedding Guest List - Afzal & Samra</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        h1 { color: #8B4513; text-align: center; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                        th { background-color: #8B4513; color: white; }
+                        .event-badge { padding: 2px 8px; border-radius: 10px; font-size: 0.8em; }
+                        .barat-walima { background: #8B4513; color: white; }
+                        .walima { background: #228B22; color: white; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Wedding Guest List</h1>
+                    <h2 style="text-align: center; color: #B8860B;">Afzal & Samra - June 25-26, 2025</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Event Type</th>
+                                <th>Relation</th>
+                                <th>Barat Guests</th>
+                                <th>Walima Guests</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${filteredData.map(rsvp => `
+                                <tr>
+                                    <td>${rsvp.name}</td>
+                                    <td>
+                                        <span class="event-badge ${rsvp.eventType === 'Barat + Walima' ? 'barat-walima' : 'walima'}">
+                                            ${rsvp.eventType}
+                                        </span>
+                                    </td>
+                                    <td style="text-transform: capitalize;">${rsvp.relation}</td>
+                                    <td>${rsvp.baratGuests || 0}</td>
+                                    <td>${rsvp.walimaGuests || 0}</td>
+                                    <td>${rsvp.phone}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 30px; text-align: center; color: #666;">
+                        <p>Generated on ${new Date().toLocaleDateString()}</p>
+                        <p>Total RSVPs: ${filteredData.length} | Barat Guests: ${filteredData.reduce((sum, rsvp) => sum + (rsvp.baratGuests || 0), 0)} | Walima Guests: ${filteredData.reduce((sum, rsvp) => sum + (rsvp.walimaGuests || 0), 0)}</p>
+                    </div>
+                </body>
+                </html>
+            `;
 
-            // Show refresh feedback
-            const refreshBtn = document.querySelector('button[onclick="refreshData()"]');
-            const originalText = refreshBtn.innerHTML;
-            refreshBtn.innerHTML = '✅ Refreshed';
-            setTimeout(() => {
-                refreshBtn.innerHTML = originalText;
-            }, 2000);
+            printWindow.document.write(guestListHtml);
+            printWindow.document.close();
+            printWindow.print();
         }
 
-        // Auto-refresh every 30 seconds
-        setInterval(refreshData, 30000);
+        // Refresh data
+        function refreshData() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('tableContainer').style.display = 'none';
+
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                updateStats();
+                renderTable();
+            }, 1000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                const modal = document.getElementById('guestModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            };
+
+            // Real-time search
+            document.getElementById('nameSearch').addEventListener('input', applyFilters);
+            document.getElementById('eventFilter').addEventListener('change', applyFilters);
+            document.getElementById('relationFilter').addEventListener('change', applyFilters);
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', initDashboard);
     </script>
 </body>
 </html>

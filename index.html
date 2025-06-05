@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afzal & Samra Wedding - June 2025</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,28 +25,35 @@
             font-size: 1.2em;
         }
 
+        .script-text {
+            font-family: 'Great Vibes', cursive;
+        }
+
         /* Language Switcher */
         .language-switcher {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         .language-switcher select {
             border: none;
             background: transparent;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             outline: none;
+            color: #8B4513;
+            font-size: 1em;
         }
 
-        /* Hero Section with Slider */
+        /* Hero Section with Enhanced Slider */
         .hero {
             height: 100vh;
             position: relative;
@@ -72,7 +79,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 3s ease-in-out;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -82,9 +89,11 @@
             opacity: 1;
         }
 
-        .slide1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1564769625392-651b2c0e7b8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        .slide2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-        .slide3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
+        .slide1 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1564769625392-651b2c0e7b8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
+        .slide2 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
+        .slide3 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
+        .slide4 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
+        .slide5 { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
 
         .hero-overlay {
             position: absolute;
@@ -92,40 +101,146 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(184, 134, 11, 0.3));
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.4), rgba(184, 134, 11, 0.4));
             z-index: -1;
+        }
+
+        /* Decorative Lanterns */
+        .lantern {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(145deg, #FFD700, #B8860B);
+            border-radius: 15px 15px 25px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .lantern::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #8B4513;
+            border-radius: 50%;
+        }
+
+        .lantern::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lantern-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .lantern-2 { top: 15%; right: 5%; animation-delay: 1s; }
+        .lantern-3 { top: 60%; left: 8%; animation-delay: 2s; }
+        .lantern-4 { top: 65%; right: 8%; animation-delay: 3s; }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
         }
 
         .hero-content {
             text-align: center;
             color: white;
             z-index: 1;
-            max-width: 800px;
+            max-width: 900px;
             padding: 0 20px;
+            position: relative;
+        }
+
+        .invitation-frame {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 60px 40px;
+            border-radius: 30px;
+            border: 3px solid #FFD700;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shimmer 6s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .bismillah {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2.2em;
+            margin-bottom: 25px;
             color: #FFD700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        .wedding-title {
+            font-size: 1.8em;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
         }
 
         .couple-names {
-            font-size: 4em;
+            font-size: 4.5em;
             font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .family-details {
+            font-size: 1.1em;
+            color: #E6E6FA;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .groom-family, .bride-family {
+            margin: 8px 0;
         }
 
         .wedding-date {
-            font-size: 1.5em;
+            font-size: 1.6em;
             margin-bottom: 40px;
             color: #FFD700;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         .invitation-buttons {
@@ -134,6 +249,8 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 50px;
+            position: relative;
+            z-index: 1;
         }
 
         .invitation-btn {
@@ -144,14 +261,31 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             border: 2px solid #FFD700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .invitation-btn:hover::before {
+            left: 100%;
         }
 
         .invitation-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             background: linear-gradient(45deg, #B8860B, #DAA520);
         }
 
@@ -163,54 +297,79 @@
         .countdown-section {
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
+            position: relative;
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23FFD700" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23FFD700" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="%23FFD700" opacity="0.1"/><circle cx="10" cy="90" r="1" fill="%23FFD700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
 
         .countdown-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .countdown-title {
-            font-size: 2.5em;
-            margin-bottom: 50px;
+            font-size: 3em;
+            margin-bottom: 60px;
             color: #FFD700;
+            font-family: 'Great Vibes', cursive;
         }
 
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
         }
 
         .countdown-item {
             background: rgba(255, 215, 0, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #FFD700;
-            min-width: 120px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 3px solid #FFD700;
+            min-width: 140px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
         }
 
         .countdown-number {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: 700;
             color: #FFD700;
             display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .countdown-label {
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Events Section */
         .events-section {
             background: url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             position: relative;
-            padding: 100px 0;
+            padding: 120px 0;
         }
 
         .events-section::before {
@@ -220,7 +379,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .events-container {
@@ -233,100 +392,198 @@
 
         .events-title {
             text-align: center;
-            font-size: 2.5em;
+            font-size: 3em;
             color: #FFD700;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
+            font-family: 'Great Vibes', cursive;
         }
 
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
         }
 
         .event-card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 50px 40px;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             border: 3px solid #FFD700;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: transform 0.6s;
+        }
+
+        .event-card:hover::before {
+            transform: rotate(45deg);
         }
 
         .event-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
         .event-icon {
-            font-size: 3em;
+            font-size: 4em;
             color: #8B4513;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .event-name {
-            font-size: 1.8em;
+            font-size: 2.2em;
             font-weight: 600;
             color: #8B4513;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .event-date {
-            font-size: 1.2em;
+            font-size: 1.4em;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         .event-guests {
-            font-size: 1em;
+            font-size: 1.1em;
             color: #888;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .event-btn {
-            padding: 15px 30px;
+            padding: 18px 35px;
             background: linear-gradient(45deg, #8B4513, #B8860B);
             color: white;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         .event-btn:hover {
             background: linear-gradient(45deg, #B8860B, #DAA520);
             transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
 
-        /* Footer */
+        /* Enhanced Footer */
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             color: white;
-            text-align: center;
-            padding: 40px 0;
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
         }
 
         .footer-content {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+            align-items: center;
+        }
+
+        .family-section {
+            text-align: center;
+        }
+
+        .family-title {
+            font-size: 1.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .family-names {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .family-names .main-name {
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .center-dua {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
         .dua {
-            font-size: 1.3em;
+            font-size: 1.8em;
             margin-bottom: 20px;
             color: #FFD700;
+            line-height: 1.6;
+        }
+
+        .dua-translation {
+            font-size: 1.1em;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            color: #999;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .couple-names {
-                font-size: 2.5em;
+                font-size: 2.8em;
             }
 
             .bismillah {
-                font-size: 1.8em;
+                font-size: 1.6em;
+            }
+
+            .invitation-frame {
+                padding: 40px 25px;
             }
 
             .invitation-buttons {
@@ -335,16 +592,30 @@
             }
 
             .countdown-timer {
-                gap: 15px;
+                gap: 20px;
             }
 
             .countdown-item {
-                padding: 20px;
-                min-width: 100px;
+                padding: 25px 20px;
+                min-width: 110px;
             }
 
             .countdown-number {
-                font-size: 2em;
+                font-size: 2.5em;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .lantern {
+                width: 50px;
+                height: 75px;
             }
         }
 
@@ -363,6 +634,26 @@
         .fade-in-up {
             animation: fadeInUp 1s ease-out;
         }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: #FFD700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -377,31 +668,55 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Decorative Lanterns -->
+        <div class="lantern lantern-1"></div>
+        <div class="lantern lantern-2"></div>
+        <div class="lantern lantern-3"></div>
+        <div class="lantern lantern-4"></div>
+
         <div class="hero-slider">
             <div class="slide slide1 active"></div>
             <div class="slide slide2"></div>
             <div class="slide slide3"></div>
+            <div class="slide slide4"></div>
+            <div class="slide slide5"></div>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content fade-in-up">
-            <div class="bismillah arabic-text" data-en="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم" data-hi="बिस्मिल्लाहिर्रहमानिर्रहीम" data-ur="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم">
-                بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
-            </div>
-            <h1 class="couple-names" data-en="Afzal & Samra" data-hi="अफज़ल और समरा" data-ur="افضل اور سمرا">
-                Afzal & Samra
-            </h1>
-            <p class="wedding-date" data-en="June 25-26, 2025" data-hi="25-26 जून, 2025" data-ur="25-26 جون، 2025">
-                June 25-26, 2025
-            </p>
-            <div class="invitation-buttons">
-                <a href="barat-walima.html" class="invitation-btn">
-                    <i class="fas fa-heart"></i>
-                    <span data-en="Barat + Walima Invitation" data-hi="बारात + वलीमा निमंत्रण" data-ur="بارات + ولیمہ دعوت">Barat + Walima Invitation</span>
-                </a>
-                <a href="walima-only.html" class="invitation-btn">
-                    <i class="fas fa-star"></i>
-                    <span data-en="Walima Only Invitation" data-hi="केवल वलीमा निमंत्रण" data-ur="صرف ولیمہ دعوت">Walima Only Invitation</span>
-                </a>
+            <div class="invitation-frame">
+                <div class="bismillah arabic-text" data-en="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم" data-hi="बिस्मिल्लाहिर्रहमानिर्रहीम" data-ur="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+                </div>
+                <p class="wedding-title" data-en="Wedding Ceremony" data-hi="विवाह समारोह" data-ur="شادی کی تقریب">
+                    Wedding Ceremony
+                </p>
+                <h1 class="couple-names" data-en="Afzal & Samra" data-hi="अफज़ल और समरा" data-ur="افضل اور سمرا">
+                    Afzal & Samra
+                </h1>
+                <div class="family-details">
+                    <div class="groom-family" data-en="S/O Abdul Hameed" data-hi="पुत्र अब्दुल हमीद" data-ur="ولد عبدالحمید">
+                        S/O Abdul Hameed
+                    </div>
+                    <div style="margin: 15px 0; color: #FFD700; font-size: 1.2em;" data-en="weds" data-hi="से विवाह" data-ur="سے شادی">
+                        weds
+                    </div>
+                    <div class="bride-family" data-en="D/O Sanaullah Khan" data-hi="पुत्री सनाउल्लाह खान" data-ur="بنت ثناء اللہ خان">
+                        D/O Sanaullah Khan
+                    </div>
+                </div>
+                <p class="wedding-date" data-en="June 25-26, 2025" data-hi="25-26 जून, 2025" data-ur="25-26 جون، 2025">
+                    June 25-26, 2025
+                </p>
+                <div class="invitation-buttons">
+                    <a href="barat-walima.html" class="invitation-btn">
+                        <i class="fas fa-heart"></i>
+                        <span data-en="Barat + Walima Invitation" data-hi="बारात + वलीमा निमंत्रण" data-ur="بارات + ولیمہ دعوت">Barat + Walima Invitation</span>
+                    </a>
+                    <a href="walima-only.html" class="invitation-btn">
+                        <i class="fas fa-star"></i>
+                        <span data-en="Walima Only Invitation" data-hi="केवल वलीमा निमंत्रण" data-ur="صرف ولیمہ دعوت">Walima Only Invitation</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -450,8 +765,8 @@
                     <p class="event-date" data-en="June 25, 2025" data-hi="25 जून, 2025" data-ur="25 جون، 2025">
                         June 25, 2025
                     </p>
-                    <p class="event-guests" data-en="Limited to 100 guests" data-hi="100 मेहमानों तक सीमित" data-ur="100 مہمانوں تک محدود">
-                        Limited to 100 guests
+                    <p class="event-guests" data-en="Limited to 100 special guests" data-hi="100 विशेष अतिथियों तक सीमित" data-ur="100 خاص مہمانوں تک محدود">
+                        Limited to 100 special guests
                     </p>
                     <a href="barat-walima.html" class="event-btn" data-en="RSVP for Barat + Walima" data-hi="बारात + वलीमा के लिए RSVP" data-ur="بارات + ولیمہ کے لیے RSVP">
                         RSVP for Barat + Walima
@@ -478,20 +793,51 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Enhanced Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p class="dua arabic-text" data-en="رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ" data-hi="रब्बना हब लना मिन अज़्वाजिना व ज़ुर्रिय्यातिना क़ुर्रत अ'युनिन" data-ur="رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ">
-                رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
-            </p>
-            <p data-en="With love and blessings from both families" data-hi="दोनों परिवारों के प्रेम और आशीर्वाद के साथ" data-ur="دونوں خاندانوں کی محبت اور دعاؤں کے ساتھ">
-                With love and blessings from both families
-            </p>
+            <div class="footer-main">
+                <div class="family-section">
+                    <h3 class="family-title" data-en="Groom's Family" data-hi="दूल्हे का परिवार" data-ur="دولہے کا خاندان">Groom's Family</h3>
+                    <div class="family-names">
+                        <div class="main-name">Abdul Hameed</div>
+                        <div>Mohd Hafiz</div>
+                        <div>Abdul Ajeej</div>
+                        <div>Mohd Juber</div>
+                        <div>Hafij Mohd Jabir Khan</div>
+                        <div style="margin-top: 10px; color: #FFD700;">&amp; Family</div>
+                    </div>
+                </div>
+
+                <div class="center-dua">
+                    <p class="dua arabic-text" data-en="رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ" data-hi="रब्बना हब लना मिन अज़्वाजिना व ज़ुर्रिय्यातिना क़ुर्रत अ'युनिन" data-ur="رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ">
+                        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
+                    </p>
+                    <p class="dua-translation" data-en="Our Lord, grant us from among our wives and offspring comfort to our eyes" data-hi="हे हमारे रब! हमें अपनी पत्नियों और संतान से आंखों की ठंडक प्रदान कर" data-ur="اے ہمارے رب! ہمیں اپنی بیویوں اور اولاد سے آنکھوں کی ٹھنڈک عطا فرما">
+                        Our Lord, grant us from among our wives and offspring comfort to our eyes
+                    </p>
+                </div>
+
+                <div class="family-section">
+                    <h3 class="family-title" data-en="Bride's Family" data-hi="दुल्हन का परिवार" data-ur="دلہن کا خاندان">Bride's Family</h3>
+                    <div class="family-names">
+                        <div class="main-name">Sanaullah Khan</div>
+                        <div style="margin-top: 20px; color: #FFD700;">&amp; Family</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-en="With love and blessings from both families" data-hi="दोनों परिवारों के प्रेम और आशीर्वाद के साथ" data-ur="دونوں خاندانوں کی محبت اور دعاؤں کے ساتھ">
+                    With love and blessings from both families
+                </p>
+                <p style="margin-top: 10px; font-size: 0.9em;">© 2025 Afzal & Samra Wedding</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Image Slider
+        // Enhanced Image Slider
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
 
@@ -501,7 +847,7 @@
             slides[currentSlide].classList.add('active');
         }
 
-        setInterval(nextSlide, 4000);
+        setInterval(nextSlide, 5000);
 
         // Countdown Timer
         function updateCountdown() {
@@ -520,7 +866,7 @@
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<h2>The Wedding Day is Here!</h2>';
+                document.getElementById('countdown').innerHTML = '<h2 style="color: #FFD700; font-family: Great Vibes, cursive; font-size: 3em;">The Wedding Day is Here!</h2>';
             }
         }
 
@@ -539,7 +885,6 @@
                 }
             });
 
-            // Save language preference
             localStorage.setItem('selectedLanguage', selectedLang);
         }
 
@@ -550,14 +895,59 @@
             changeLanguage();
         });
 
+        // Floating particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+            particle.style.animationDuration = Math.random() * 3 + 2 + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.countdown-item, .event-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>

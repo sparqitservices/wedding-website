@@ -1,289 +1,310 @@
-# 🎉 Wedding Website Setup Guide
+# Wedding Website Setup Guide
+## Afzal & Samra Wedding Website - Complete Setup Instructions
 
-## Complete Wedding Invitation Website with RSVP System
+### 🎉 Overview
+This is a complete wedding invitation website with RSVP functionality, admin dashboard, and email notifications. The website supports multiple languages (English, Hindi, Urdu) and has a beautiful Islamic theme.
 
-This guide will help you set up your beautiful wedding website with real-time RSVP tracking, multi-language support, and media message recording.
+### 📁 Files Included
+- `index.html` - Main homepage with enhanced design
+- `barat-walima.html` - Invitation page for Barat + Walima guests
+- `walima-only.html` - Invitation page for Walima-only guests
+- `thank-you.html` - Thank you page after RSVP submission
+- `admin.html` - Admin dashboard for managing RSVPs
+- `email-service.js` - Email integration service
+- `SETUP-GUIDE.md` - This setup guide
 
-## 📋 What You Have
+### 🚀 Quick Start
 
-Your wedding website includes:
-- **Landing Page** (`index.html`) - Beautiful countdown and event details
-- **RSVP Page** (`rsvp.html`) - Form with audio/video recording
-- **Admin Dashboard** (`admin.html`) - Real-time guest management
+#### Option 1: GitHub Pages (Recommended - Free)
+1. Create a new GitHub repository
+2. Upload all website files to the repository
+3. Go to Settings → Pages
+4. Select source as "Deploy from a branch"
+5. Choose "main" branch and "/ (root)" folder
+6. Your website will be available at `https://yourusername.github.io/repository-name`
 
-## 🚀 Quick Setup (5 Steps)
+#### Option 2: Custom Domain (afzalandsamra.online)
+1. Follow GitHub Pages setup above
+2. In repository Settings → Pages → Custom domain
+3. Enter: `afzalandsamra.online`
+4. Enable "Enforce HTTPS"
 
-### Step 1: Customize Your Wedding Details
+### 🌐 Domain Configuration (Namecheap)
 
-#### Edit `index.html`:
-1. **Line 8**: Replace `[Bride Name]` with actual bride's name
-2. **Line 47**: Update Barat date: `Date: June 25, 2024`
-3. **Line 48**: Update Barat time: `Time: 7:00 PM`
-4. **Line 49**: Update Barat venue: `Venue: [Your Barat Venue]`
-5. **Line 56**: Update Walima date: `Date: June 26, 2024`
-6. **Line 57**: Update Walima time: `Time: 8:00 PM`
-7. **Line 58**: Update Walima venue: `Venue: [Your Walima Venue]`
-8. **Line 165**: Set your actual wedding date:
-   ```javascript
-   const weddingDate = new Date('2024-06-25T19:00:00');
-   ```
+#### DNS Settings for afzalandsamra.online:
+1. Log into Namecheap account
+2. Go to Domain List → Manage → Advanced DNS
+3. Add these records:
 
-### Step 2: Test Locally
-
-1. **Create a folder** called `wedding-website`
-2. **Put all 3 HTML files** in this folder
-3. **Open `index.html`** in your web browser
-4. **Test all features**:
-   - Countdown timer
-   - Language switching
-   - RSVP form
-   - Audio/video recording
-   - Admin dashboard
-
-### Step 3: Set Up Free Hosting (GitHub Pages)
-
-1. **Create GitHub Account**: Go to [github.com](https://github.com) and sign up
-2. **Create New Repository**:
-   - Click "New repository"
-   - Name: `your-name-wedding` (e.g., `afzal-wedding`)
-   - Make it **Public**
-   - Don't initialize with README
-3. **Upload Files**:
-   - Click "uploading an existing file"
-   - Drag and drop your 3 HTML files
-   - Write commit message: "Add wedding website"
-   - Click "Commit changes"
-4. **Enable GitHub Pages**:
-   - Go to repository **Settings**
-   - Scroll to **Pages** section
-   - Source: "Deploy from a branch"
-   - Branch: "main"
-   - Folder: "/ (root)"
-   - Click **Save**
-
-### Step 4: Get Your Website URL
-
-Your website will be available at:
 ```
-https://yourusername.github.io/your-name-wedding
+Type: A Record
+Host: @
+Value: 185.199.108.153
+TTL: Automatic
+
+Type: A Record
+Host: @
+Value: 185.199.109.153
+TTL: Automatic
+
+Type: A Record
+Host: @
+Value: 185.199.110.153
+TTL: Automatic
+
+Type: A Record
+Host: @
+Value: 185.199.111.153
+TTL: Automatic
+
+Type: CNAME Record
+Host: www
+Value: yourusername.github.io
+TTL: Automatic
 ```
 
-Example: `https://afzal123.github.io/afzal-wedding`
+### 📧 Email Integration Setup
 
-### Step 5: Create QR Codes
+#### Method 1: EmailJS (Recommended)
+1. Go to [EmailJS.com](https://www.emailjs.com/)
+2. Create a free account
+3. Create a new service (Gmail/Outlook/etc.)
+4. Create email templates:
 
-1. **For Barat**: `https://yourusername.github.io/your-name-wedding/rsvp.html?event=barat`
-2. **For Walima**: `https://yourusername.github.io/your-name-wedding/rsvp.html?event=walima`
+**Admin Notification Template:**
+```
+Subject: New RSVP - {{guest_name}} for {{event_type}}
 
-Use any free QR code generator:
-- [qr-code-generator.com](https://www.qr-code-generator.com)
-- [qrcode.com](https://www.qrcode.com)
+Dear Afzal,
 
-## 🎨 Customization Options
+You have received a new RSVP for your wedding!
 
-### Change Colors
-Edit the CSS in each HTML file:
-```css
-:root {
-    --primary-color: #7c3aed;    /* Purple - change this */
-    --secondary-color: #ec4899;  /* Pink - change this */
-    --accent-color: #f59e0b;     /* Amber - change this */
-}
+Guest Details:
+- Name: {{guest_name}}
+- Email: {{guest_email}}
+- Phone: {{guest_phone}}
+- Event: {{event_type}}
+- Relation: {{relation}}
+- Barat Guests: {{barat_guests}}
+- Walima Guests: {{walima_guests}}
+- Dietary Restrictions: {{dietary_restrictions}}
+- Message: {{message}}
+
+Submitted on: {{submission_date}}
+
+Best regards,
+Wedding Website System
 ```
 
-### Add Your Photos
-1. Create an `images` folder
-2. Add your engagement photos
-3. Update the HTML to include them
-
-### Customize Messages
-Update the placeholder text in the RSVP form and other sections.
-
-## 📱 Mobile Optimization
-
-Your website is already mobile-friendly with:
-- Responsive design
-- Touch-friendly buttons
-- Optimized forms
-- Fast loading
-
-## 🔧 Advanced Setup (Optional)
-
-### Add Firebase Database (Free)
-
-For real-time data storage:
-
-1. **Go to Firebase**: [console.firebase.google.com](https://console.firebase.google.com)
-2. **Create Project**: "YourName-Wedding"
-3. **Add Firestore Database**: Start in test mode
-4. **Add Storage**: For audio/video files
-5. **Get Config**: Copy Firebase configuration
-6. **Update JavaScript**: Replace mock data with Firebase calls
-
-### Custom Domain (Optional)
-
-Instead of GitHub URL, you can use:
-- `yournames.wedding`
-- `afzalandname.com`
-
-Buy domain from:
-- Namecheap ($10/year)
-- GoDaddy ($12/year)
-- Google Domains ($12/year)
-
-## 📊 Features Included
-
-### ✅ Landing Page Features:
-- Live countdown timer
-- Beautiful animations
-- Event details (Barat & Walima)
-- Guest count progress bars
-- QR code display
-- Multi-language support
-
-### ✅ RSVP Page Features:
-- Name and phone collection
-- Event selection (Barat/Walima)
-- Text wishes
-- Audio message recording (2 min max)
-- Video message recording (1 min max)
-- Indian phone validation
-- Multi-language interface
-
-### ✅ Admin Dashboard Features:
-- Real-time guest statistics
-- Guest list with filters
-- Language distribution
-- Event capacity tracking
-- CSV export
-- Recent activity feed
-
-## 🎯 Perfect for Indian Muslim Weddings
-
-- **Bismillah** at the top of each page
-- **Barat and Walima** separate events
-- **Multi-language** support (English, Hindi, Urdu)
-- **Indian phone** number validation
-- **Cultural colors** and styling
-
-## 💰 Cost Breakdown
-
-- **GitHub Pages Hosting**: FREE
-- **Firebase Database**: FREE (up to 1GB)
-- **Domain Name**: $10-12/year (optional)
-- **QR Code Generation**: FREE
-- **Total**: $0 (or $10-12 with custom domain)
-
-## 🚨 Important Notes
-
-### Before Going Live:
-1. ✅ Test on multiple devices (phone, tablet, desktop)
-2. ✅ Test in different browsers (Chrome, Safari, Firefox)
-3. ✅ Verify all wedding details are correct
-4. ✅ Test QR codes work properly
-5. ✅ Check audio/video recording works
-
-### Security:
-- Admin dashboard has no password (add one if needed)
-- All data is stored locally in browser (no real database yet)
-- For production, implement Firebase with proper security rules
-
-## 📞 Troubleshooting
-
-### Common Issues:
-
-**1. QR Codes Don't Work**
-- Check URL is correct
-- Test on different phones
-- Make sure website is live
-
-**2. Audio/Video Recording Fails**
-- Check browser permissions
-- Use HTTPS (required for media)
-- Try different browsers
-
-**3. Countdown Shows Wrong Time**
-- Update wedding date in JavaScript
-- Check timezone settings
-
-**4. Language Not Switching**
-- Check all HTML files have language support
-- Verify JavaScript is working
-
-**5. Website Not Loading**
-- Wait 5-10 minutes after enabling GitHub Pages
-- Check repository is public
-- Verify file names are correct
-
-## 🎊 Launch Checklist
-
-### Pre-Launch:
-- [ ] Wedding details updated
-- [ ] Website tested on mobile
-- [ ] QR codes generated
-- [ ] Wedding cards designed
-- [ ] Admin dashboard tested
-
-### Launch Day:
-- [ ] Share website URL
-- [ ] Post on social media
-- [ ] Send WhatsApp messages
-- [ ] Include QR codes on wedding cards
-
-### Post-Launch:
-- [ ] Monitor RSVP responses
-- [ ] Check for technical issues
-- [ ] Backup guest data regularly
-- [ ] Respond to guest questions
-
-## 🎉 Marketing Your Website
-
-### Share Your Website:
-1. **WhatsApp Status**: Post countdown screenshot
-2. **Instagram Story**: Share QR code
-3. **Facebook Post**: Announce the website
-4. **Email Signature**: Add website link
-5. **Wedding Cards**: Include QR codes
-
-### Sample Messages:
+**Guest Confirmation Template:**
 ```
-🎉 We're getting married! 
-Visit our wedding website for all details and to RSVP:
-https://yourusername.github.io/your-name-wedding
+Subject: RSVP Confirmation - Afzal & Samra Wedding
 
-Scan the QR code on your invitation card for quick access!
+Dear {{to_name}},
+
+Thank you for your RSVP! We're excited to celebrate with you.
+
+Your RSVP Details:
+- Event: {{event_type}}
+- Barat Guests: {{barat_guests}}
+- Walima Guests: {{walima_guests}}
+- Submitted: {{submission_date}}
+
+Event Details:
+- Barat: June 25, 2025
+- Walima: June 26, 2025
+
+We'll send you venue details closer to the date.
+
+With love,
+Afzal & Samra
 ```
 
-## 💡 Pro Tips
+5. Update `email-service.js` with your EmailJS credentials:
+```javascript
+this.publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+this.serviceId = 'YOUR_SERVICE_ID';
+this.templateId = 'YOUR_TEMPLATE_ID';
+```
 
-1. **Test Everything**: Before printing wedding cards
-2. **Backup Data**: Export CSV regularly from admin dashboard
-3. **Monitor Usage**: Check admin dashboard daily
-4. **Mobile First**: Most guests will use phones
-5. **Keep It Simple**: Don't over-customize initially
+#### Method 2: Formspree (Easier Setup)
+1. Go to [Formspree.io](https://formspree.io/)
+2. Create a free account
+3. Create a new form
+4. Use your email: `iafzalhameed@gmail.com`
+5. Get your form endpoint
+6. Update the Formspree URL in `email-service.js`
 
-## 🆘 Need Help?
+#### Method 3: Netlify Forms (If using Netlify)
+1. Deploy to Netlify
+2. Add `data-netlify="true"` to your forms
+3. Netlify will automatically handle form submissions
 
-### If Something Goes Wrong:
-1. Check browser console for errors (F12)
-2. Test in incognito/private mode
-3. Verify all files are uploaded correctly
-4. Check GitHub Pages status
+### 🎨 Customization
 
-### For Advanced Features:
-- Add photo gallery
-- Integrate payment for gifts
-- Add live streaming
-- Include accommodation booking
+#### Colors & Branding
+The website uses Islamic-themed colors:
+- Primary Gold: `#FFD700`
+- Brown: `#8B4513`
+- Dark Brown: `#B8860B`
 
-## 🎊 Congratulations!
+#### Images
+Replace placeholder images with your actual wedding photos:
+- Hero slider images
+- Background images
+- Add your engagement photos
 
-Your wedding website is now ready to impress your guests! 
+#### Content Updates
+Update these in all HTML files:
+- Wedding dates
+- Venue information
+- Contact details
+- Family names (already updated)
 
-**Total Setup Time**: 30-60 minutes
-**Total Cost**: FREE
-**Guest Impression**: PRICELESS! 🎉
+### 📱 QR Code Generation
+
+#### For Wedding Cards:
+1. **Barat + Walima QR Code:**
+   - URL: `https://afzalandsamra.online/barat-walima.html`
+
+2. **Walima Only QR Code:**
+   - URL: `https://afzalandsamra.online/walima-only.html`
+
+#### QR Code Generators:
+- [QR Code Generator](https://www.qr-code-generator.com/)
+- [QRCode Monkey](https://www.qrcode-monkey.com/)
+- [Google Charts QR](https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://afzalandsamra.online/barat-walima.html)
+
+### 🔧 Technical Features
+
+#### Responsive Design
+- Mobile-friendly
+- Tablet optimized
+- Desktop enhanced
+
+#### Multi-language Support
+- English
+- Hindi (हिंदी)
+- Urdu (اردو)
+
+#### Admin Dashboard Features
+- Real-time RSVP tracking
+- Guest count management
+- Export functionality (CSV, Excel, PDF)
+- Print guest lists
+- Advanced filtering
+
+#### Security Features
+- HTTPS enabled
+- Form validation
+- Spam protection
+
+### 📊 Analytics Setup (Optional)
+
+#### Google Analytics
+Add this to all HTML files before `</head>`:
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+```
+
+### 🎯 Testing Checklist
+
+#### Before Going Live:
+- [ ] Test all forms on different devices
+- [ ] Verify email notifications work
+- [ ] Check language switcher
+- [ ] Test QR codes
+- [ ] Verify countdown timer
+- [ ] Check admin dashboard
+- [ ] Test export functionality
+- [ ] Verify responsive design
+
+#### Email Testing:
+- [ ] Submit test RSVP
+- [ ] Check admin email received
+- [ ] Verify guest confirmation email
+- [ ] Test with different email providers
+
+### 🚨 Troubleshooting
+
+#### Common Issues:
+
+**1. Emails not sending:**
+- Check EmailJS/Formspree configuration
+- Verify API keys
+- Check spam folders
+- Test with different email providers
+
+**2. Language switcher not working:**
+- Clear browser cache
+- Check JavaScript console for errors
+- Verify language data attributes
+
+**3. QR codes not working:**
+- Test URLs directly in browser
+- Ensure HTTPS is working
+- Check domain propagation
+
+**4. Admin dashboard not loading:**
+- Check if admin.html is uploaded
+- Verify file permissions
+- Test in different browsers
+
+### 📞 Support
+
+#### For Technical Issues:
+- Email: iafzalhameed@gmail.com
+- Check browser console for errors
+- Test in incognito mode
+
+#### For Content Updates:
+- Edit HTML files directly
+- Re-upload to GitHub
+- Changes reflect automatically
+
+### 🎊 Launch Checklist
+
+#### Final Steps:
+1. [ ] Upload all files to GitHub
+2. [ ] Configure custom domain
+3. [ ] Set up email integration
+4. [ ] Generate QR codes
+5. [ ] Test complete user journey
+6. [ ] Share with family for testing
+7. [ ] Print wedding cards with QR codes
+8. [ ] Monitor RSVPs via admin dashboard
+
+### 📈 Post-Launch
+
+#### Monitoring:
+- Check admin dashboard daily
+- Monitor email notifications
+- Track guest responses
+- Export guest lists for planning
+
+#### Updates:
+- Add venue details closer to date
+- Update any changed information
+- Send reminder emails if needed
 
 ---
 
-*May your wedding website be as beautiful as your love story!* ❤️
+## 🎉 Congratulations!
+
+Your wedding website is now ready! This professional, feature-rich website will help you manage your wedding invitations and RSVPs efficiently.
+
+**Website URL:** https://afzalandsamra.online
+**Admin Dashboard:** https://afzalandsamra.online/admin.html
+
+May Allah bless your union and grant you happiness! 💕
+
+---
+
+*Created with love for Afzal & Samra's special day* ✨
