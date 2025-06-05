@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walima Invitation - Afzal & Samra</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            min-height: 100vh;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.2em;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .language-switcher select {
+            border: none;
+            background: transparent;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(139, 69, 19, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(184, 134, 11, 0.9);
+            transform: translateX(-5px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .bismillah {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .couple-names {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .invitation-title {
+            font-size: 1.8em;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .event-details {
+            font-size: 1.2em;
+            color: #FFF;
+            margin-bottom: 30px;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 3px solid #FFD700;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 2em;
+            color: #8B4513;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #8B4513;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #B8860B;
+            box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .guest-count-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .guest-count-item h4 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .guest-count-item input {
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #8B4513;
+            max-width: 150px;
+            margin: 0 auto;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #8B4513, #B8860B);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #B8860B, #DAA520);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Event Info Card */
+        .event-info {
+            margin-bottom: 40px;
+        }
+
+        .event-card {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #FFD700;
+            text-align: center;
+            color: white;
+        }
+
+        .event-card h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .event-card p {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .event-card .date {
+            font-weight: 600;
+            font-size: 1.3em;
+            color: #FFA500;
+        }
+
+        .event-card .capacity {
+            color: #90EE90;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #8B4513;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #c3e6cb;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Error Message */
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #f5c6cb;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .couple-names {
+                font-size: 2em;
+            }
+
+            .bismillah {
+                font-size: 1.5em;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="ur">اردو</option>
+        </select>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        <span data-en="Back to Home" data-hi="होम पर वापस" data-ur="واپس ہوم">Back to Home</span>
+    </a>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header fade-in-up">
+            <div class="bismillah arabic-text" data-en="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم" data-hi="बिस्मिल्लाहिर्रहमानिर्रहीम" data-ur="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم">
+                بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+            </div>
+            <h1 class="couple-names" data-en="Afzal & Samra" data-hi="अफज़ल और समरा" data-ur="افضل اور سمرا">
+                Afzal & Samra
+            </h1>
+            <h2 class="invitation-title" data-en="Walima Reception Invitation" data-hi="वलीमा रिसेप्शन निमंत्रण" data-ur="ولیمہ ریسپشن دعوت">
+                Walima Reception Invitation
+            </h2>
+            <p class="event-details" data-en="Join us for our Walima reception celebration" data-hi="हमारे वलीमा रिसेप्शन समारोह में शामिल हों" data-ur="ہمارے ولیمہ ریسپشن کی تقریب میں شامل ہوں">
+                Join us for our Walima reception celebration
+            </p>
+        </div>
+
+        <!-- Event Information -->
+        <div class="event-info fade-in-up">
+            <div class="event-card">
+                <h3 data-en="Walima Reception" data-hi="वलीमा रिसेप्शन" data-ur="ولیمہ ریسپشن">Walima Reception</h3>
+                <p class="date" data-en="June 26, 2025" data-hi="26 जून, 2025" data-ur="26 جون، 2025">June 26, 2025</p>
+                <p data-en="Lunch Event" data-hi="दोपहर का भोजन" data-ur="دوپہر کا کھانا">Lunch Event</p>
+                <p data-en="12:00 PM onwards" data-hi="दोपहर 12:00 बजे से" data-ur="دوپہر 12:00 بجے سے">12:00 PM onwards</p>
+                <p class="capacity" data-en="All friends and family welcome!" data-hi="सभी मित्र और परिवार का स्वागत है!" data-ur="تمام دوست اور خاندان کا خیر مقدم!">All friends and family welcome!</p>
+            </div>
+        </div>
+
+        <!-- RSVP Form -->
+        <div class="form-container fade-in-up">
+            <h2 class="form-title" data-en="RSVP for Walima Reception" data-hi="वलीमा रिसेप्शन के लिए RSVP" data-ur="ولیمہ ریسپشن کے لیے RSVP">
+                RSVP for Walima Reception
+            </h2>
+
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name" data-en="Full Name *" data-hi="पूरा नाम *" data-ur="مکمل نام *">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-en="Email Address *" data-hi="ईमेल पता *" data-ur="ای میل ایڈریس *">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" data-en="Phone Number *" data-hi="फोन नंबर *" data-ur="فون نمبر *">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="relation" data-en="Relation to Couple *" data-hi="जोड़े से रिश्ता *" data-ur="جوڑے سے رشتہ *">Relation to Couple *</label>
+                    <select id="relation" name="relation" required>
+                        <option value="" data-en="Select Relation" data-hi="रिश्ता चुनें" data-ur="رشتہ منتخب کریں">Select Relation</option>
+                        <option value="family" data-en="Family" data-hi="परिवार" data-ur="خاندان">Family</option>
+                        <option value="friend" data-en="Friend" data-hi="दोस्त" data-ur="دوست">Friend</option>
+                        <option value="colleague" data-en="Colleague" data-hi="सहकर्मी" data-ur="ساتھی">Colleague</option>
+                        <option value="neighbor" data-en="Neighbor" data-hi="पड़ोसी" data-ur="پڑوسی">Neighbor</option>
+                        <option value="other" data-en="Other" data-hi="अन्य" data-ur="دیگر">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="guest-count-item">
+                        <h4 data-en="Number of Guests Attending Walima *" data-hi="वलीमा में उपस्थित होने वाले मेहमानों की संख्या *" data-ur="ولیمہ میں شرکت کرنے والے مہمانوں کی تعداد *">Number of Guests Attending Walima *</h4>
+                        <input type="number" id="walimaGuests" name="walimaGuests" min="1" max="15" value="1" required>
+                        <p style="margin-top: 10px; color: #666; font-size: 0.9em;" data-en="Maximum 15 guests per invitation" data-hi="प्रति निमंत्रण अधिकतम 15 मेहमान" data-ur="فی دعوت زیادہ سے زیادہ 15 مہمان">Maximum 15 guests per invitation</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dietary" data-en="Dietary Restrictions" data-hi="आहार संबंधी प्रतिबंध" data-ur="غذائی پابندیاں">Dietary Restrictions</label>
+                    <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, Allergies, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-en="Message for the Couple" data-hi="जोड़े के लिए संदेश" data-ur="جوڑے کے لیے پیغام">Message for the Couple</label>
+                    <textarea id="message" name="message" placeholder="Your wishes and blessings..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" data-en="Submit RSVP" data-hi="RSVP जमा करें" data-ur="RSVP جمع کریں">
+                    Submit RSVP
+                </button>
+
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p data-en="Submitting your RSVP..." data-hi="आपका RSVP जमा किया जा रहा है..." data-ur="آپ کا RSVP جمع کیا جا رہا ہے...">Submitting your RSVP...</p>
+                </div>
+
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p data-en="Thank you! Your RSVP has been submitted successfully." data-hi="धन्यवाद! आपका RSVP सफलतापूर्वक जमा कर दिया गया है।" data-ur="شکریہ! آپ کا RSVP کامیابی سے جمع ہو گیا ہے۔">Thank you! Your RSVP has been submitted successfully.</p>
+                </div>
+
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p data-en="Sorry, there was an error submitting your RSVP. Please try again." data-hi="क्षमा करें, आपका RSVP जमा करने में त्रुटि हुई। कृपया पुनः प्रयास करें।" data-ur="معذرت، آپ کا RSVP جمع کرنے میں خرابی ہوئی۔ براہ کرم دوبارہ کوشش کریں۔">Sorry, there was an error submitting your RSVP. Please try again.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Language Switcher
+        function changeLanguage() {
+            const selectedLang = document.getElementById('languageSelect').value;
+            const elements = document.querySelectorAll('[data-' + selectedLang + ']');
+
+            elements.forEach(element => {
+                const text = element.getAttribute('data-' + selectedLang);
+                if (text) {
+                    if (element.tagName === 'OPTION') {
+                        element.textContent = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+
+            // Update placeholders
+            const placeholders = {
+                'en': {
+                    'dietary': 'Vegetarian, Allergies, etc.',
+                    'message': 'Your wishes and blessings...'
+                },
+                'hi': {
+                    'dietary': 'शाकाहारी, एलर्जी, आदि।',
+                    'message': 'आपकी शुभकामनाएं और आशीर्वाद...'
+                },
+                'ur': {
+                    'dietary': 'سبزی خور، الرجی وغیرہ۔',
+                    'message': 'آپ کی نیک خواہشات اور دعائیں...'
+                }
+            };
+
+            if (placeholders[selectedLang]) {
+                document.getElementById('dietary').placeholder = placeholders[selectedLang]['dietary'];
+                document.getElementById('message').placeholder = placeholders[selectedLang]['message'];
+            }
+
+            localStorage.setItem('selectedLanguage', selectedLang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('load', function() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('languageSelect').value = savedLang;
+            changeLanguage();
+        });
+
+        // Form Submission
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.querySelector('.submit-btn');
+            const loading = document.querySelector('.loading');
+            const successMsg = document.querySelector('.success-message');
+            const errorMsg = document.querySelector('.error-message');
+
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            // Show loading
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            data.eventType = 'Walima Only';
+            data.submissionTime = new Date().toISOString();
+
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                // For demo purposes, we'll show success
+                // In production, replace this with actual email service
+
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+
+                // Show success message
+                successMsg.style.display = 'block';
+
+                // Redirect to thank you page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'thank-you.html?event=walima-only&name=' + encodeURIComponent(data.name);
+                }, 2000);
+
+                // Reset form
+                this.reset();
+                document.getElementById('walimaGuests').value = '1';
+
+            }, 2000);
+        });
+
+        // Guest count validation
+        document.getElementById('walimaGuests').addEventListener('change', function() {
+            if (this.value > 15) {
+                alert('Maximum 15 guests allowed per invitation for Walima');
+                this.value = 15;
+            }
+            if (this.value < 1) {
+                this.value = 1;
+            }
+        });
+    </script>
+</body>
+</html>
